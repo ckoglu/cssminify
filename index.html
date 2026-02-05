@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <link rel="apple-touch-icon" sizes="57x57" href="./favicon/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="./favicon/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="./favicon/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="./favicon/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="./favicon/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="./favicon/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="./favicon/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="./favicon/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="./favicon/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="./favicon/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="./favicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./favicon/favicon-16x16.png">
+    <link rel="manifest" href="./favicon/manifest.json">
+    <meta name="msapplication-TileColor" content="#A746B1">
+    <meta name="msapplication-TileImage" content="./favicon/ms-icon-144x144.png">
+    <meta name="theme-color" content="#A746B1">
+    <title>CSS Minify</title>
+    <meta name="description" content="css kodların boyutunu düşürün">
+    <meta name="keywords" content="css, boyut, github, minimal, minify">
+    <meta name="author" content="ckoglu">
+    <script src="./js/noflash.js"></script>
+    <link rel="preload" href="./css/style.css" as="style">
+    <link rel="stylesheet" href="./css/style.css"/>
+</head>
+<body>
+    <header>
+        <div class="border-top">
+            <div class="main-title">
+                <a href="./"><h1>CSS Minify</h1></a>
+                <p>CSS kodlarınızı düzenleyin ✔️</p>
+            </div>
+            <div class="main-title-right">
+                <a href="#editorSection">Editör</a>
+                <a id="report-button" href="#report-css-container" class="hidden">Rapor</a>
+                <a href="#license-section">Hakkında</a>
+                <a href="#sss-section">SSS</a>
+                <details class="dropdown">
+                    <summary role="button" class="secondary" onclick="openMenu('theme')"><span id="theme-text" data-tooltip="tema değiştir"></span></summary>
+                    <ul id="theme-list-menu">
+                        <li><a href="#" data-theme-switcher="light">☀️ <span>Açık</span></a></li>
+                        <li><a href="#" data-theme-switcher="dark">🌙 <span>Koyu</span></a></li>
+                        <li><a href="#" data-theme-switcher="system">🖥️ <span>Sistem</span></a></li>
+                        <li><a href="#" data-theme-switcher="auto">🌓 <span>Otomatik</span></a></li>
+                    </ul>
+                </details>
+            </div>
+
+        </div>
+    </header>
+
+    <main>
+        <div class="code-section editor-section pt0" id="editorSection">
+            <div class="section-title-container">
+                <div class="section-title-top">
+                    <div class="section-title">📃 CSS Editör</div>
+                    <data class="data-btn mobil" data data-size="0.8" onclick="openMenu('editor')"><i icon="menu-grid-o"></i></data>
+                    <div class="section-buttons" id="editor-list-menu">
+                        <button id="editor-re-line" class="btn-minify" onclick="OnlyLineCSS()" data-tooltip="Only Line CSS Minify">Line</button>
+                        <button id="editor-re-byline" class="btn-minify" onclick="MultiLineCSS()" data-tooltip="Multi Line CSS Minify">Multi Line</button>
+                        <button id="editor-repeat" class="btn-minify" onclick="formatRunCSS()" data-tooltip="Format CSS">Format</button>
+                        <data id="editor-comment" class="data-btn hidden" data data-size="0.8" onclick="commentAdd();" data-tooltip="Yorumları Göster"><i icon="comment"></i></data>
+                        <data id="editor-no-comment" class="data-btn hidden" data data-size="0.8" onclick="commentRemove();" data-tooltip="Yorumları Kaldır"><i icon="no-comment"></i></data>
+                        <data id="editor-download" class="data-btn" data data-size="0.8" onclick="downloadCSS()" data-tooltip="CSS Dosyasını İndir"><i icon="software-download"></i></data>
+                        <data id="editor-copy" class="data-btn" data data-size="0.8" onclick="copyCSS()" data-tooltip="CSS Kodunu Kopyala"><i icon="copy"></i></data>
+                        <data id="editor-upload" class="data-btn" data data-size="0.8" onclick="triggerFileInput()" data-tooltip="Dosya Yükle"><i icon="software-upload"></i></data>
+                        <data id="editor-link" class="data-btn" data data-size="0.8" data-target="urlModal" data-tooltip="URL'den CSS Yükle" onclick="toggleModal(event)"><i icon="link"></i></data>
+                        <data id="editor-trash" class="data-btn" data data-size="0.8" data-target="cleanModal" data-tooltip="Editörü Temizle" onclick="toggleModal(event)"><i icon="trash"></i></data>
+                    </div>
+                </div>
+                <div id="searchContainer" class="section-title-bottom"></div>
+            </div>
+
+            <div class="css-editor-container">
+                <div id="container" class="css-editor-container"></div>
+            </div>
+        </div>
+        <div id="report-css-container" class="report-section hidden"></div>
+        
+        <div class="license-section" id="license-section">
+            <h3>Hakkında</h3>
+            <p><b>CSS Minify</b>, web geliştiricileri ve tasarımcılar için geliştirilmiş, <a href="https://tr.wikipedia.org/wiki/CSS" target="_blank" data-tooltip="Wikipedia CSS">CSS</a> kodlarını optimize etmek ve boyutlarını küçültmek amacıyla oluşturulmuş bir <a href="https://tr.wikipedia.org/wiki/Web_uygulaması" target="_blank" data-tooltip="Wikipedia Web App">web uygulaması</a>dır.</p>
+
+            <div class="section-title">🎯 Temel Amaçlar</div>
+            <p><b>CSS Minify</b>, web geliştiricilerine yönelik iki temel alanda kapsamlı çözümler sunar. Birincisi, <a href="https://tr.wikipedia.org/wiki/Performans_optimizasyonu" target="_blank" data-tooltip="Web Performans Optimizasyonu">web performansını iyileştirmek</a> için CSS dosya boyutlarını küçülterek sayfa yükleme sürelerini hızlandırmaktır. İkincisi ise, <a href="https://tr.wikipedia.org/wiki/Yazılım_bakımı" target="_blank" data-tooltip="Yazılım Bakımı">kod bakımını ve anlaşılırlığını artırmak</a> amacıyla, dağınık stil kodlarını düzenli ve okunabilir hale getiren akıllı formatlama özellikleri sağlamaktır.</p>
+            <p>Platform, aynı zamanda <a href="https://tr.wikipedia.org/wiki/Yazılım_verimliliği" target="_blank" data-tooltip="Geliştirici Verimliliği">geliştirici verimliliğini</a> en üst düzeye çıkarmak için CSS yönetimini basitleştiren pratik araçlar içerir. Tüm bu işlevler, <b>tamamen ücretsiz, reklamsız ve sezgisel</b> bir arayüz sunarak <a href="https://tr.wikipedia.org/wiki/Web_erişilebilirliği" target="_blank" data-tooltip="Web Erişilebilirliği">herkes için erişilebilir</a> bir deneyim vaat eder.</p>
+            
+            <div class="section-title">✨ Özellikler</div>
+            <ul>
+                <li><a href="https://developer.mozilla.org/en-US/docs/Glossary/Minification" target="_blank" data-tooltip="CSS Minifikasyon Nedir?">CSS Minify</a>: CSS kodlarını sıkıştır ve boyutunu %70'e varan oranda küçült</li>
+                <li><a href="https://en.wikipedia.org/wiki/Prettyprint" target="_blank" data-tooltip="Kod Formatlama">Akıllı Formatlama</a>: Dağınık CSS kodlarını okunabilir ve düzenli hale getir</li>
+                <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/File_API" target="_blank" data-tooltip="HTML5 File API">Çoklu Dosya Yükleme</a>: CSS dosyalarını yükle, URL'den al veya sürükle-bırak</li>
+                <li><a href="https://en.wikipedia.org/wiki/Web_performance" target="_blank" data-tooltip="Web Performans Analizi">Detaylı İstatistikler</a>: Boyut karşılaştırması, sıkıştırma oranı ve performans analizleri</li>
+                <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Clipboard_API" target="_blank" data-tooltip="Clipboard API">Kolay İndirme</a>: Minify edilmiş CSS'i dosya olarak indir veya tek tıkla kopyala</li>
+                <li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Syntax" target="_blank" data-tooltip="CSS Syntax">Syntax Doğrulama</a>: CSS syntax hatalarını tespit et ve göster</li>
+                <li><a href="https://en.wikipedia.org/wiki/Code_refactoring" target="_blank" data-tooltip="Kod Yeniden Düzenleme">Mod Seçenekleri</a>: Tek satır, çok satır veya formatlı çıktı seçimi</li>
+                <li><a href="https://en.wikipedia.org/wiki/Comment_(computer_programming)" target="_blank" data-tooltip="Programlama Yorumları">Yorum Kontrolü</a>: Yorum satırlarını sakla veya göster</li>
+                <li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/At-rule" target="_blank" data-tooltip="CSS @-kuralları">Akıllı Parser</a>: @media, @keyframes gibi özel kuralları destekler</li>
+                <li><a href="https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Responsive_Design" target="_blank" data-tooltip="Responsive Tasarım">Responsive Tasarım</a>: </b>Tüm cihazlarda mükemmel çalışır</li>
+                <li><a href="https://en.wikipedia.org/wiki/Autocomplete" target="_blank" data-tooltip="Kod Tamamlama">Kod Tamamlama</a>: CSS özellikleri ve değerleri için hover tooltip'ler</li>
+            </ul>
+            
+            <div class="section-title">🔒 Gizlilik ve Güvenlik</div>
+            <ul>
+                <li><a href="https://en.wikipedia.org/wiki/Client-side" target="_blank" data-tooltip="İstemci Taraflı İşlem">Tamamen Yerel İşlem</a>: Tüm CSS işlemleri tarayıcınızda gerçekleşir, sunucuya veri gönderilmez</li>
+                <li><a href="https://en.wikipedia.org/wiki/Data_privacy" target="_blank" data-tooltip="Veri Gizliliği">Veri Toplanmaz</a>: Kullanıcı verileri toplanmaz, izlenmez veya paylaşılmaz</li>
+                <li><a href="https://tr.wikipedia.org/wiki/Çerez_(İnternet)" target="_blank" data-tooltip="Wikipedia Çerez">Çerez Kullanılmaz</a>: Herhangi bir çerez (cookie) politikası yoktur</li>
+                <li><a href="https://en.wikipedia.org/wiki/Third-party_software_component" target="_blank" data-tooltip="Üçüncü Taraf Yazılım">Üçüncü Taraf Yok</a>: Google Analytics veya diğer izleme araçları kullanılmaz</li>
+                <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage" target="_blank" data-tooltip="Web Storage API">İsteğe Bağlı LocalStorage</a>: Sadece kullanıcı tercihlerini kaydetmek için kullanılır</li>
+                <li><a href="https://tr.wikipedia.org/wiki/Açık_kaynak" target="_blank" data-tooltip="Açık Kaynak Yazılım">Açık Kaynak</a>: Şeffaf geliştirme süreci, kod incelemesine açık</li>
+                <li><a href="https://tr.wikipedia.org/wiki/HTTPS" target="_blank" data-tooltip="HTTPS Güvenliği">HTTPS Güvenliği</a>: Tüm bağlantılar şifrelenmiştir</li>
+                <li><a href="https://en.wikipedia.org/wiki/Adware" target="_blank" data-tooltip="Reklam Yazılımı">Reklamsız</a>: Hiçbir reklam veya izleyici içermez</li>
+            </ul>
+        </div>
+
+        <div class="sss-section" id="sss-section">
+            <h3>Sıkça Sorulan Sorular</h3>
+            
+            <details class="accordion">
+                <summary class="section-title">CSS Minify nerede kullanılıyor?</summary>
+                <p>Web geliştiricileri, front-end mühendisleri, UI/UX tasarımcıları ve web performansına önem veren herkes tarafından kullanılır. Özellikle <a href="https://en.wikipedia.org/wiki/Enterprise_software" target="_blank" data-tooltip="Kurumsal Yazılım">büyük ölçekli projelerde</a> (kurumsal web siteleri ve uygulamalar), <a href="https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps" target="_blank" data-tooltip="Mobil Uygulamalar">mobil uygulamalarda</a> (düşük bant genişliği için optimize edilmiş CSS), <a href="https://en.wikipedia.org/wiki/Design_system" target="_blank" data-tooltip="Tasarım Sistemleri">tasarım sistemlerinde</a> (component kütüphaneleri ve UI framework'leri), <a href="https://en.wikipedia.org/wiki/E-commerce" target="_blank" data-tooltip="E-ticaret Siteleri">performans kritik sitelerde</a> (e-ticaret, haber portalları) ve <a href="https://en.wikipedia.org/wiki/Educational_technology" target="_blank" data-tooltip="Eğitim Teknolojisi">eğitimde</a> (CSS öğrenenler için pratik araç) kullanılmaktadır.</p>
+            </details>
+            
+            <details class="accordion">
+                <summary class="section-title">Minify (küçültme) ne anlama geliyor?</summary>
+                <p><a href="https://tr.wikipedia.org/wiki/CSS" target="_blank" data-tooltip="Wikipedia CSS">CSS</a> minify, stil sayfanızdan gereksiz karakterlerin kaldırılma sürecidir: <a href="https://en.wikipedia.org/wiki/Whitespace_character" target="_blank" data-tooltip="Boşluk Karakterleri">boşluk temizleme</a> (fazla boşluk, tab ve satır sonları), <a href="https://en.wikipedia.org/wiki/Comment_(computer_programming)" target="_blank" data-tooltip="Programlama Yorumları">yorum kaldırma</a> (geliştirici yorumlarını temizleme), <a href="https://en.wikipedia.org/wiki/Code_optimization" target="_blank" data-tooltip="Kod Optimizasyonu">optimizasyon</a> (renk kodlarını kısaltma, birimleri optimize etme) ve <a href="https://en.wikipedia.org/wiki/Data_compression" target="_blank" data-tooltip="Veri Sıkıştırma">sıkıştırma</a> (seçicileri ve değerleri optimize etme). Kod aynı şekilde çalışır ancak %30-70 daha az yer kaplar.</p>
+            </details>
+            
+            <details class="accordion">
+                <summary class="section-title">Neden CSS'imi küçültmeliyim?</summary>
+                <p>Küçültülmüş CSS'in avantajları: <a href="https://en.wikipedia.org/wiki/Page_load_time" target="_blank" data-tooltip="Sayfa Yükleme Süresi">daha hızlı yükleme</a> (küçük dosyalar daha hızlı indirilir), <a href="https://tr.wikipedia.org/wiki/Arama_motoru_optimizasyonu" target="_blank" data-tooltip="Arama motoru optimizasyonu (SEO)">SEO artışı</a> (SEO için daha yüksek performans puanı), <a href="https://en.wikipedia.org/wiki/User_experience" target="_blank" data-tooltip="Kullanıcı Deneyimi">daha iyi kullanıcı deneyimi</a> (düşük bant genişliğinde bile hızlı çalışma), <a href="https://en.wikipedia.org/wiki/Bandwidth_(computing)" target="_blank" data-tooltip="Bant Genişliği">bant genişliği tasarrufu</a> (sunucu trafiğini azaltır) ve <a href="https://en.wikipedia.org/wiki/Obfuscation_(software)" target="_blank" data-tooltip="Kod Gizleme">güvenlik</a> (kaynak kodunu daha az okunabilir hale getirir). Tıpkı valizini düzenleyen bir gezgin gibi: Aynı eşyalar, daha az yer.</p>
+            </details>
+            
+            <details class="accordion">
+                <summary class="section-title">CSS'yi küçültmek kodumun işlevselliğini etkiler mi?</summary>
+                <p><b>Hayır, kesinlikle etkilemez!</b> Sadece görünüşünü değiştirir, nasıl çalıştığını değil: <a href="https://en.wikipedia.org/wiki/Output_(computer_science)" target="_blank" data-tooltip="Bilgisayar Çıktısı">aynı çıktı</a> (tarayıcı aynı sonucu görür), <a href="https://developer.mozilla.org/en-US/docs/Web/CSS" target="_blank" data-tooltip="CSS Özellikleri">tüm özellikler korunur</a> (tüm CSS kuralları ve değerleri korunur), <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries" target="_blank" data-tooltip="Medya Sorguları">medya sorguları çalışır</a> (responsive tasarım bozulmaz), <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Animations" target="_blank" data-tooltip="CSS Animasyonları">animasyonlar çalışır</a> (@keyframes ve transition'lar korunur) ve <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties" target="_blank" data-tooltip="CSS Değişkenleri">değişkenler korunur</a> (CSS Custom Properties etkilenmez).</p>
+            </details>
+            
+            <details class="accordion">
+                <summary class="section-title">Minifikasyon CSS için faydalı mı?</summary>
+                <p><b>Kesinlikle evet!</b> Faydaları: <a href="https://en.wikipedia.org/wiki/Web_performance" target="_blank" data-tooltip="Web Performansı">performans</a> (daha hızlı sayfa yükleme süreleri), <a href="https://en.wikipedia.org/wiki/Search_engine_optimization" target="_blank" data-tooltip="Arama Motoru Optimizasyonu">SEO</a> (arama motorları hızlı siteleri sever), <a href="https://en.wikipedia.org/wiki/Mobile_web" target="_blank" data-tooltip="Mobil Web">mobil</a> (düşük bant genişliğinde daha iyi performans), <a href="https://en.wikipedia.org/wiki/Cost_reduction" target="_blank" data-tooltip="Maliyet Azaltma">maliyet</a> (sunucu bant genişliğinden tasarruf) ve <a href="https://web.dev/vitals/" target="_blank" data-tooltip="Core Web Vitals">Core Web Vitals</a> (LCP, FID, CLS metriklerini iyileştirir).</p>
+            </details>
+            
+            <details class="accordion">
+                <summary class="section-title">Küçültülmüş CSS'yi orijinal haline döndürebilir miyim?</summary>
+                <p><b>Evet!</b> Araçta bu özellik mevcuttur: <a href="#editor-repeat" data-tooltip="Format CSS Butonu">Format CSS Butonu</a> (kodu okunabilir forma getirir), <a href="https://en.wikipedia.org/wiki/Prettyprint" target="_blank" data-tooltip="Kod Formatlama">akıllı formatlama</a> (girinti, satır araları ve yapıyı geri getirir), <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage" target="_blank" data-tooltip="Web Storage API">LocalStorage</a> (otomatik yedekleme ile kod kaybını önler) ve <a href="https://developer.mozilla.org/en-US/docs/Web/API/Clipboard_API" target="_blank" data-tooltip="Clipboard API">kopyala özelliği</a> (formatlanmış kodu kolayca kopyala). Araç içinde <a href="#editor-repeat" data-tooltip="Format CSS Button">Format CSS</a> butonu ile orijinal formata yakın bir yapıya dönebilirsiniz.</p>
+            </details>
+            
+            <details class="accordion">
+                <summary class="section-title">Bu araç ücretsiz mi? Sınırlamalar var mı?</summary>
+                <p><b>Tamamen ücretsiz ve sınırsız!</b> <a href="https://en.wikipedia.org/wiki/Free_software" target="_blank" data-tooltip="Ücretsiz Yazılım">Ücretsiz</a> (hiçbir ücret veya abonelik yok), <a href="https://en.wikipedia.org/wiki/Software_license" target="_blank" data-tooltip="Yazılım Lisansı">sınırsız kullanım</a> (günlük sınır yok), <a href="https://en.wikipedia.org/wiki/Adware" target="_blank" data-tooltip="Reklam Yazılımı">reklamsız</a> (hiçbir reklam veya pop-up yok), <a href="https://en.wikipedia.org/wiki/Registration" target="_blank" data-tooltip="Kayıt Gereksinimi">kayıt gerektirmez</a> (hemen kullanmaya başlayın), <a href="https://en.wikipedia.org/wiki/Offline_web_application" target="_blank" data-tooltip="Çevrimdışı Uygulama">çevrimdışı çalışır</a> (internet kesintilerinde bile çalışır) ve <a href="https://en.wikipedia.org/wiki/Commercial_software" target="_blank" data-tooltip="Ticari Yazılım">ticari kullanım</a> (ticari projelerde kullanabilirsiniz).</p>
+            </details>
+            
+            <details class="accordion">
+                <summary class="section-title">Hangi dosya formatlarını destekliyor?</summary>
+                <p><b>Çoklu format desteği:</b> <a href="https://en.wikipedia.org/wiki/CSS" target="_blank" data-tooltip="CSS Dosyası">.css uzantılı dosyalar</a>, <a href="https://en.wikipedia.org/wiki/Minification_(programming)" target="_blank" data-tooltip="Minify Edilmiş CSS">.min.css (zaten minify edilmiş) dosyaları</a>, <a href="https://en.wikipedia.org/wiki/URL" target="_blank" data-tooltip="Web Adresi">URL'den CSS dosyaları</a>, <a href="https://en.wikipedia.org/wiki/Copy_and_paste" target="_blank" data-tooltip="Kopyala-Yapıştır">doğrudan kopyala-yapıştır</a>, <a href="https://en.wikipedia.org/wiki/Drag_and_drop" target="_blank" data-tooltip="Sürükle-Bırak">sürükle-bırak ile yükleme</a> ve <a href="https://en.wikipedia.org/wiki/Batch_processing" target="_blank" data-tooltip="Toplu İşlem">çoklu dosya yükleme (tek seferde)</a>.</p>
+            </details>
+            
+            <details class="accordion">
+                <summary class="section-title">Hangi CSS özelliklerini destekliyor?</summary>
+                <p><b>Modern CSS'in tüm özelliklerini destekler:</b> <a href="https://en.wikipedia.org/wiki/Cascading_Style_Sheets#CSS_3" target="_blank" data-tooltip="CSS3">CSS3 ve öncesi tüm sürümler</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries" target="_blank" data-tooltip="Medya Sorguları">@media queries (responsive tasarım)</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@keyframes" target="_blank" data-tooltip="CSS Animasyonları">@keyframes animasyonları</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties" target="_blank" data-tooltip="CSS Değişkenleri">CSS değişkenleri (Custom Properties)</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Images/Using_CSS_gradients" target="_blank" data-tooltip="CSS Gradient'ler">gradient'ler ve advanced selectors</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@import" target="_blank" data-tooltip="CSS Import">@import kuralları</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face" target="_blank" data-tooltip="CSS Font Face">@font-face tanımlamaları</a> ve <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme" target="_blank" data-tooltip="Dark Mode">dark mode media sorguları</a>.</p>
+            </details>
+            
+            <details class="accordion">
+                <summary class="section-title">Mobil cihazlarda çalışır mı?</summary>
+                <p><b>Evet, tamamen responsive!</b> <a href="https://en.wikipedia.org/wiki/Responsive_web_design" target="_blank" data-tooltip="Responsive Tasarım">Tüm ekran boyutları</a> (telefon, tablet, masaüstü), <a href="https://en.wikipedia.org/wiki/Touchscreen" target="_blank" data-tooltip="Dokunmatik Ekran">touch desteği</a> (mobil dokunmatik optimizasyonu), <a href="https://developer.mozilla.org/en-US/docs/Web/API/VirtualKeyboard_API" target="_blank" data-tooltip="Virtual Keyboard">mobil özel özellikler</a> (virtual keyboard uyumu), <a href="https://en.wikipedia.org/wiki/Performance_per_watt" target="_blank" data-tooltip="Performans">hızlı performans</a> (mobil işlemcilerde bile hızlı), <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme" target="_blank" data-tooltip="Dark Mode">dark mode</a> (sistem tercihine göre otomatik tema) ve <a href="https://en.wikipedia.org/wiki/Power_consumption" target="_blank" data-tooltip="Güç Tüketimi">düşük güç tüketimi</a> (mobil pil dostu).</p>
+            </details>
+            
+            <details class="accordion">
+                <summary class="section-title">Verilerim güvende mi? Kimse erişebilir mi?</summary>
+                <p><b>Tamamen güvenli ve gizli!</b> <a href="https://en.wikipedia.org/wiki/Client-side" target="_blank" data-tooltip="İstemci Taraflı">Sunucu iletişimi yok</a> (tüm işlemler tarayıcınızda), <a href="https://en.wikipedia.org/wiki/Data_transmission" target="_blank" data-tooltip="Veri İletimi">veri gönderilmez</a> (CSS kodlarınız asla sunucuya gitmez), <a href="https://en.wikipedia.org/wiki/Cache_(computing)" target="_blank" data-tooltip="Önbellek Temizleme">otomatik temizlik</a> (sayfadan çıkınca veriler silinir), <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage" target="_blank" data-tooltip="Web Storage API">isteğe bağlı kayıt</a> (sadece siz izin verirseniz localStorage kullanır), <a href="https://tr.wikipedia.org/wiki/HTTPS" target="_blank" data-tooltip="HTTPS Güvenliği">HTTPS güvenliği</a> (tüm trafik şifrelenir) ve <a href="https://en.wikipedia.org/wiki/Open_source" target="_blank" data-tooltip="Açık Kaynak">kod incelemesi</a> (açık kaynak kodunu inceleyebilirsiniz).</p>
+            </details>
+            
+            <details class="accordion">
+                <summary class="section-title">Hata ile karşılaşırsam ne yapmalıyım?</summary>
+                <p><b>Hata çözüm adımları:</b> <a href="https://en.wikipedia.org/wiki/Wikipedia:Bypass_your_cache" target="_blank" data-tooltip="Cache Bypass">Sayfayı yenile</a> (Ctrl + F5 ile tam yenileme yapın), <a href="https://en.wikipedia.org/wiki/Cache_(computing)" target="_blank" data-tooltip="Önbellek">cache temizle</a> (tarayıcı cache'ini temizleyin), <a href="https://en.wikipedia.org/wiki/Web_browser" target="_blank" data-tooltip="Web Tarayıcısı">tarayıcı güncelle</a> (en son sürümü kullanın), <a href="https://en.wikipedia.org/wiki/JavaScript" target="_blank" data-tooltip="JavaScript">JavaScript etkin</a> (JS'nin açık olduğundan emin olun), <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Syntax" target="_blank" data-tooltip="CSS Syntax">kod kontrolü</a> (CSS kodunuzda syntax hatası olabilir) ve <a href="https://en.wikipedia.org/wiki/Technical_support" target="_blank" data-tooltip="Teknik Destek">destek</a> (hata detayları ile iletişime geçin). Hata mesajını ve kodu kaydederek bize ulaşın.</p>
+            </details>
+        </div>
+
+    </main>
+    <footer>
+        <p>Made with ❤️ for the web development community</p>
+        <p>© 2025 CSS Minify  •  <a data-target="mitModal" data-tooltip="MIT Lisans" onclick="toggleModal(event)">Lisans</a>  •  <a href="https://github.com/ckoglu/" target="_blank" data-tooltip="Github">ckoglu</a></p>
+    </footer>
+    <div id="alertBox"></div>
+    <!-- URL'den CSS Yükleme Modal -->
+    <dialog id="urlModal">
+        <article role="urlModal">
+            <header role="modal">
+                <div class="modal-border">
+                    <h3>🔗 URL'den CSS Yükle</h3>
+                    <data data data-size="0.9" aria-label="Close" rel="prev" data-target="urlModal" onclick="toggleModal(event)" data-tooltip="Kapat"><i icon="close"></i></data>
+                </div>
+            </header>
+            <section role="modal">
+                <form id="urlForm">
+                    <input type="url" id="cssUrl" name="cssUrl" class="url-input" placeholder="https://example.com/styles.css" required autocomplete="off" autofocus>
+                    <div class="loading-container hidden" id="urlLoading"><span id="loadingUrl"></span></div>
+                    <div class="error-container hidden" id="urlError"><span id="errorMessage"></span></div>
+                </form>
+            </section>
+            <footer role="modal">
+                <button type="button" class="btn-green" onclick="loadCSSFromURL()" data-tooltip="URL'den CSS yükle">Yükle</button>
+            </footer>
+        </article>
+    </dialog>
+    <!-- ./ URL Modal -->
+     <!-- Clean Modal -->
+    <dialog id="cleanModal">
+        <article role="cleanModal">
+            <header role="modal">
+                <div class="modal-border">
+                    <h3>⚠️ Emin misin?</h3>
+                    <data data data-size="0.9" aria-label="Close" rel="prev" data-target="cleanModal" onclick="toggleModal(event)" data-tooltip="Kapat"><i icon="close"></i></data>
+                </div>
+            </header>
+            <section role="modal"><span>Tüm CSS çalışmalarınız silinecek!</span></section>
+            <footer role="modal">
+                <button type="button" class="btn-red" aria-label="Close" rel="prev" data-target="cleanModal" onclick="clearEditor();" data-tooltip="Editörü Temizle">Temizle</button>
+            </footer>
+        </article>
+    </dialog>
+    <!-- ./ Clean Modal -->
+    <!-- MIT -->
+    <dialog id="mitModal">
+        <article role="mitModal">
+            <header role="modal">
+                <div class="modal-border">
+                    <h3>📄 MIT Lisans</h3>
+                    <data data data-size="0.9" aria-label="Close" rel="prev" data-target="mitModal" onclick="toggleModal(event)" data-tooltip="Kapat"><i icon="close"></i></data>
+                </div>
+            </header>
+            <section role="modal">
+                <pre>Copyright (c) 2025 CSS Minify
+
+Bu yazılımın bir kopyasını ve ilgili dokümantasyon dosyalarını ("Yazılım")
+elde eden herkes, bu Yazılımı kısıtlama olmaksızın kullanma, kopyalama,
+değiştirme, birleştirme, yayımlama, dağıtma, alt lisanslama ve/veya satma
+hakkına ücretsiz olarak sahip olur.
+
+Yukarıdaki telif hakkı bildirimi ve bu izin bildirimi, Yazılımın tüm
+kopyalarına veya önemli bölümlerine eklenmelidir.
+
+YAZILIM "OLDUĞU GİBİ", HERHANGİ BİR GARANTİ OLMAKSIZIN, AÇIKÇA VEYA
+ZIMNEN, SATILABİLİRLİK VEYA BELİRLİ BİR AMACA UYGUNLUK DAHİL, ANCAK BUNLARLA
+SINIRLI OLMAMAK ÜZERE GARANTİLER İÇERMEZ. HİÇBİR DURUMDA YAZARLAR VEYA
+TELİF HAKKI SAHİPLERİ, YAZILIM VEYA KULLANIMI VEYA YAZILIMLA BAĞLANTILI
+DİĞER İŞLEMLERDEN KAYNAKLANAN HERHANGİ BİR TAZMİNAT, SÖZLEŞME VEYA DİĞER
+YÜKÜMLÜLÜKLERDEN SORUMLU TUTULAMAZ.</pre>
+            </section>
+        </article>
+    </dialog>
+    <!-- ./ MIT Modal -->
+    <!-- Hidden Element -->
+    <input type="file" id="cssFileInput" accept=".css,text/css" onchange="handleFileSelect(event)" class="hidden" style="display: none;" >
+    <input type="radio" name="mode" id="line" value="line" class="hidden" style="display: none;" >
+    <input type="radio" name="mode" id="multiline" value="multiline" class="hidden" style="display: none;" >
+    <input type="radio" name="mode" id="format" value="format" class="hidden" style="display: none;" >
+    <input type="radio" name="comment" id="comment" value="comment" class="hidden" style="display: none;" >
+    <input type="radio" name="comment" id="nocomment" value="nocomment" class="hidden" style="display: none;" >
+    <script src="./js/sticky.js"></script>
+    <script src="./js/prop.js"></script>
+    <script src="./js/runtime.js"></script>
+    <script src="./js/vendors.js"></script>
+    <script src="./js/hover.js"></script>
+    <script src="./js/main.js"></script>
+    <script src="./js/theme.js"></script>
+    <script src="./js/generate.js"></script>
+    <script src="./js/analyzer.js"></script>
+    <script src="./js/tooltip.js"></script>
+    <script src="./js/alert.js"></script>
+    <script src="./js/modal.js"></script>
+</body>
+</html>
