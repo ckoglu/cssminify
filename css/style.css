@@ -79,13 +79,13 @@
     --tok-meta: #267f99;
 }
 :root[data-theme="dark"] {
-    --white: #1a1a1a; 
+    --white: #272727; 
     --black: #ffffff;
     --black-15: #ffffff15;
     --black-25: #ffffff25;
     --white-60: #00000060;
     --white-20: #00000020;
-    --silver: #262626;
+    --silver: #2f2f2f;
     --dark-silver: #333333;
     --light-gray: #4d4d4d;
     --gray: #9ca3af;
@@ -154,7 +154,7 @@ main{width:100%; padding-top: var(--main-top); max-width: var(--maxw); min-heigh
 header{display:flex; justify-content: space-between; align-items: center; margin: 0 auto; border: 1px solid var(--black-25); border-top: 0; position: fixed; top: 0; z-index: 999; background: transparent; width: 100%; max-width: var(--maxw)}
 header::before, .metrics-list-section .metric-head::before, .section-title-container::before{content: "";position: absolute;inset: 0;backdrop-filter: var(--blur);pointer-events: none;z-index: -1;border-radius: inherit;}
 .border-top{display:flex; justify-content: space-between; align-items: center; width: 100%; border-top: 6px solid; border-image: linear-gradient(139deg,#fb8817,#ff4b01,#c12127,#e02aff) 3}
-.section-title-top, .border-top, footer {padding: var(--p6) var(--p14); }
+.section-title-top, .border-top, footer {padding: var(--p6) var(--p14);}
 .main-title{padding:0}
 .main-title h1{text-align:left; width: fit-content; font-size: calc(var(--font-size) + 6px); font-weight: 700; color: var(--text-clr); line-height: 1.3}
 .main-title h1:hover{text-decoration:underline}
@@ -257,7 +257,7 @@ div[data-tooltip-container]{position:fixed; background: var(--text-clr); color: 
 .license-section, .sss-section{max-width:var(--maxw); border-bottom: 1px solid var(--black-25)}
 .sss-section{border-bottom:0}
 .sss-section h3, .license-section h3{font-size:calc(var(--font-size) + 12px); font-weight: 600; color: var(--text-clr); margin-bottom: var(--p5)}
-.sss-section p{margin:0; border-left: 3px solid var(--black-25); padding-left: var(--p6) !important;line-height: calc(var(--line-height) - 0.2);}
+.sss-section p{margin:0; border-left: 3px solid var(--black-25); padding: var(--p6) !important;line-height: calc(var(--line-height) - 0.2);background:var(--silver)}
 .report-section{max-width:var(--maxw); width: 100%; margin: 0 auto;border-bottom:1px solid var(--black-25)}
 .report-section h3{font-size:calc(var(--font-size) + 8px); font-weight: 700; color: var(--text-clr); margin-bottom: var(--p2); letter-spacing: -0.5px}
 .stats-grid{display:grid; grid-template-columns: repeat(3,1fr); gap: var(--p6); margin: var(--p4) 0}
