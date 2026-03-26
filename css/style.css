@@ -172,7 +172,7 @@ header::before, .metrics-list-section .metric-head::before, .section-title-conta
 .section-buttons{display:flex; align-items: start; flex-wrap: wrap; gap: var(--p2)}
 .report-section, .sss-section, .license-section {padding: var(--p13) var(--p14);}
 .report-section .section-title, .sss-section .section-title, .license-section .section-title{font-size:calc(var(--font-size) + 1px); font-weight: 600; display: flex; align-items: center; gap: var(--p4); justify-content: space-between;margin-top: var(--p12);padding: 0 0 var(--p3) 0;}
-.sss-section .section-title {padding-right: var(--p12);font-size: var(--font-size);}
+.sss-section .section-title {padding-right: var(--p12);font-size: var(--font-size);margin-top: var(--p5);color: var(--text-sec-clr);}
 .css-editor span{display:inline; white-space: pre}
 .line-numbers{background:var(--white); position: absolute; left: 0; top: -1px; height: calc(100% + 1px); user-select: none; white-space: pre; pointer-events: none; resize: none; overflow: hidden; color: var(--text-sec-clr); font-family: var(--font-mono); font-size: var(--font-size); width: var(--p14); padding: var(--p3) var(--p2) var(--p3) 0; line-height: var(--line-height); text-align: right; box-sizing: border-box; border: 1px solid transparent; border-right: 1px solid var(--black-25)}
 .line-number.active-line{background-color:var(--light-gray); color: var(--text-clr)}
